@@ -6,16 +6,21 @@ def main():
 
     cursor = conn.cursor()
 
+    #execute the queries
+
     create_table_query = """
-    CREATE TABLE IF NOT EXIST kg(
-        id = VARCHAR(32) PRIMARY_KEY,
-        text = TEXT NOT NULL,
-        embedding = BLOB NOT NULL
-    );
-    """
+        CREATE TABLE IF NOT EXISTS kg(
+            id VARCHAR(32) PRIMARY KEY,
+            text TEXT NOT NULL,
+            embedding BLOB NOT NULL,
+            edges TEXT NOT NULL
+        );
+        """
 
     cursor.execute(create_table_query)
+    conn.commit()
 
+    #close resoureces
     cursor.close()
     conn.close()
 
