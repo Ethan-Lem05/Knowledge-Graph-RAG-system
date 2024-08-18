@@ -1,12 +1,6 @@
 import requests
 from langchain.tools import BaseTool
 from langchain.pydantic_v1 import BaseModel, Field
-import logging
-
-
-#define a logger
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # Define the input schema for the tool
 class knowledge_tree_args(BaseModel):

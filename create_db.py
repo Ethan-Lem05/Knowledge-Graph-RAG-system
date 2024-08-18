@@ -1,6 +1,6 @@
 import sqlite3
 
-def main():
+def create_db():
     # Create a connection to the database
     conn = sqlite3.connect('kg.db')
 
@@ -23,6 +23,22 @@ def main():
     #close resoureces
     cursor.close()
     conn.close()
+
+def print_all_rows():
+    conn = sqlite3.connect('kg.db')
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM kg")
+    rows = cursor.fetchall()
+
+    for row in rows:
+        print(row)
+
+    cursor.close()
+    conn.close()
+
+def main():
+    pass
 
 if __name__ == "__main__":
     main()
