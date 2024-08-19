@@ -3,6 +3,7 @@ import flask
 from flask import request, jsonify
 from ds_implementation import knowledge_graph
 from functools import wraps
+import signal
 
 # Initialize app
 app = flask.Flask(__name__)
@@ -66,6 +67,16 @@ def save_graph(exception=None):
         print("Graph saved successfully.")
     except Exception as e:
         print("Error saving graph: {e}")
+
+############################################
+
+#deals with termination signals and unclean exits 
+def signal_handler(sig, frame):
+    print("Termination signal received. Saving graph...")
+    save_graph()
+
+signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGTERM, signal_handler)
 
 ############################################
 if __name__ == '__main__':
